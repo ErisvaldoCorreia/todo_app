@@ -18,7 +18,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List _todoAppList = [];
+  List _todoAppList = ["erisvaldo", "desenvolvedor"];
 
   Future<File> _saveFile() async {
     String dataTodoAppFlutter = json.encode(_todoAppList);
@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<File> _getFile() async {
     final directory = await getApplicationDocumentsDirectory();
-    return File('${directory.path}/dataTodoAppFlutter.json');
+    return File('${directory.path}/@dataTodoAppFlutter.json');
   }
 
   @override
@@ -72,6 +72,17 @@ class _MyAppState extends State<MyApp> {
                   ),
                 )
               ],
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.only(top: 20),
+              itemCount: _todoAppList.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(_todoAppList[index]),
+                );
+              },
             ),
           ),
         ],
